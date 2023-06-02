@@ -1,5 +1,5 @@
 {
-  "name": "hw",
+  "name": "node-hw",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -20,5 +20,8 @@
   "homepage": "https://github.com/YuliiaMay/node-hw#readme",
   "devDependencies": {
     "nodemon": "^2.0.22"
+  },
+  "dependencies": {
+    "commander": "^10.0.1"
   }
 }
