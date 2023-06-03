@@ -1,28 +1,43 @@
-/*
- * Розкоментуйте і запиши значення
- * const contactsPath = ;
- */
+const {readFile, writeFile, appendFile, unlink} = require('fs').promises;
+const path = require('path');
 
-// TODO: задокументувати кожну функцію
-function listContacts() {
-  // ...твій код
-}
+// const fileDir = 'node-basics-01';
+const contactsPath = path.join(__dirname, 'contacts.json');
 
-function getContactById(contactId) {
-  // ...твій код
-}
 
-function removeContact(contactId) {
-  // ...твій код
-}
+async function listContacts() {
+    const contacts = await readFile(contactsPath);
+    return JSON.stringify(contacts);
+};
 
-function addContact(name, email, phone) {
+async function getContactById(contactId) {
+    const allContacts = listContacts();
+    const contactById = allContacts.find((contact) => contact.id === contactId);
+    return contactById || null;
+};
+
+
+// fs.unlink(path, callback) - видалення файлу.
+async function removeContact(contactId) {
+    try {
+        const allContacts = listContacts();
+        const deletedCcontact = allContacts.find((contact) => contact.id === contactId)
+        return JSON.stringify(deletedCcontact);
+    } catch (error) {
+        console.log(error.message);
+    }
+};
+
+
+// fs.appendFile(filename, data, [options])- додавання у файл
+async function addContact(name, email, phone) {
   // ...твій код
-}
+};
+
 
 module.exports = {
-  listContacts,
-  getContactById,
-  removeContact,
-  addContact
-}
+    listContacts,
+    getContactById,
+    removeContact,
+    addContact
+};
