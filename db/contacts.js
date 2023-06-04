@@ -2,11 +2,11 @@ const {readFile, writeFile, appendFile, unlink} = require('fs').promises;
 const path = require('path');
 
 // const fileDir = 'node-basics-01';
-const contactsPath = path.join(__dirname, 'contacts.json');
+// const contactsPath = path.join(`${__dirname}/contacts.json`, 'utf-8');
 
 
 async function listContacts() {
-    const contacts = await readFile(contactsPath);
+    const contacts = await readFile(`${__dirname}/contacts.json`, 'utf-8');
     return JSON.stringify(contacts);
 };
 
