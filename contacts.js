@@ -3,7 +3,6 @@ const { nanoid } = require('nanoid');
 const path = require('path');
 
 
-// const fileDir = 'node-basics-01';
 const contactsPath = path.join(__dirname, "./db/contacts.json");
 
 
@@ -12,6 +11,7 @@ async function listContacts() {
     return JSON.parse(contacts);
 };
 
+
 async function getContactById(contactId) {
     const data = await listContacts();
     const contactById = data.find((contact) => contact.id === contactId);
@@ -19,7 +19,6 @@ async function getContactById(contactId) {
 };
 
 
-// fs.unlink(path, callback) - видалення файлу.
 async function removeContact(contactId) {
     const data = await listContacts();
     const index = data.findIndex(contact => contact.id === contactId);
@@ -27,13 +26,13 @@ async function removeContact(contactId) {
         return null;
     }
 
+
     const [result] = data.splice(index, 1)
     await writeFile(contactsPath, JSON.stringify(data, null, 2));
     return result;
 };
 
 
-// fs.appendFile(filename, data, [options])- додавання у файл
 async function addContact(name, email, phone) {
     const data = await listContacts();
     const newContact = {
